@@ -14,6 +14,14 @@ object FirebaseRepository {
         db.child(id).setValue(quote.copy(id = id))
     }
 
+    fun updateQuote(quote: Quote){
+        db.child(quote.id).setValue(quote)
+
+    }
+    fun deleteQuote(id: String){
+        db.child(id).removeValue()
+    }
+
     fun getQuotes(onDataChange: (List<Quote>) -> Unit) {
         db.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
